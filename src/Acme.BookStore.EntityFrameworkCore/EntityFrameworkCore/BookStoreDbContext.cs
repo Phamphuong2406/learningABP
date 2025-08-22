@@ -15,6 +15,7 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Acme.BookStore.Models;
+using Acme.BookStore.Configurations;
 
 namespace Acme.BookStore.EntityFrameworkCore;
 
@@ -52,6 +53,8 @@ public class BookStoreDbContext :
     public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
     public DbSet<IdentitySession> Sessions { get; set; }
     public DbSet<Client> Clients { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
 
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
@@ -81,6 +84,10 @@ public class BookStoreDbContext :
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
 
+        //builder.ApplyConfiguration(new ProductConfiguration());
+        //builder.ApplyConfiguration(new CategoryConfiguration());
+
+        builder.ApplyConfigurationsFromAssembly(typeof(BookStoreDbContext).Assembly);
         /* Configure your own tables/entities inside here */
 
         //builder.Entity<YourEntity>(b =>

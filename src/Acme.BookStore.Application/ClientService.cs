@@ -5,10 +5,6 @@ using Acme.BookStore.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.DependencyInjection;
@@ -50,7 +46,7 @@ namespace Acme.BookStore
             return new ObjectResult(clientObj);
         }
         [Authorize(BookStorePermissions.Todo.Default)]
-        public async Task<IActionResult> GetListSync()
+        public async Task<IActionResult> GetListAsync()
         {
             var clientList = await this._clientrepository.GetListAsync();
             return new ObjectResult(clientList);

@@ -11,7 +11,7 @@ namespace Acme.BookStore.Interfaces
 {
     public interface IClientService
     {
-        Task<IActionResult> GetListSync();
+        Task<IActionResult> GetListAsync();
         Task<IActionResult> GetByIdAsync(Guid id);
         Task<IActionResult> CreateAsync(ClientDTO client);
         Task<IActionResult> UpdateAsync(ClientDTO client);
